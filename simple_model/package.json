@@ -1,13 +1,16 @@
 {
   "name": "simple_model",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "src/index.js",
   "license": "MIT",
-  "scripts":{
-    "test": "mocha ./tests/*"
+  "scripts": {
+    "test": "yarn run lint && mocha ./tests/*",
+    "lint": "eslint ./tests/**.js ./src/*.js",
+    "lint-fix": "eslint ./tests/**.js ./src/*.js --fix"
   },
   "devDependencies": {
     "chai": "^4.1.2",
+    "eslint": "^4.6.1",
     "mocha": "^3.5.3"
   }
 }
