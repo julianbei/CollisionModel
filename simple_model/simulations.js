@@ -14,16 +14,18 @@ function numericDestruction(fleet1, fleet2){
   if (ships > 0) {
     combattant2.ships = 0;
     return {
-      winner: combattant1,
-      looser: combattant2
-    };
-  } else {
-    combattant1.ships = 0;
-    return {
       winner: combattant2,
       looser: combattant1
     };
   }
+  if(ships < 0){
+    combattant1.ships = 0;
+    return {
+      winner: combattant1,
+      looser: combattant2
+    };
+  }
+  combattant2.ships = 0;
   return {
     draw1: combattant1,
     draw2: combattant2
