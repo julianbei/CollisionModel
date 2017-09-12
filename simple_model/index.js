@@ -14,4 +14,11 @@ const commonwealth = {
   ships: 300
 }
 
-console.log('simulateNumericDecision \nwinner:', simulateNumericDecision(orion, commonwealth));
+const hasle = {
+  name: 'commonwealth',
+  ships: 300
+}
+
+console.log('simulateNumericDecision fight: 1\nwinner:', simulateNumericDecision(orion, commonwealth));
+console.log('simulateNumericDecision fight: 2\nwinner:', simulateNumericDecision(commonwealth, orion));
+console.log('simulateNumericDecision fight: 3\nwinner:', simulateNumericDecision(hasle, commonwealth));
