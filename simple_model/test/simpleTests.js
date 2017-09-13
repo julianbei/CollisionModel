@@ -98,7 +98,10 @@ describe('simulations', function() {
 
   describe('Stone, Rock and Paper (srp)', function() {
     it('should destroy primary small ships in the first frame', done => {
-      let fleets = fixtures.srp.fleets;
+      let fleets = {
+        fleet1: fixtures.srp.fleets['ohio'],
+        fleet2: fixtures.srp.fleets['texas']
+      };
       const expected = {
         fleet1: {
           name: 'ohio',
@@ -125,7 +128,10 @@ describe('simulations', function() {
     });
 
     it('should have destroyed all small ships after 5 frames', done => {
-      let fleets = fixtures.srp.fleets;
+      let fleets = {
+        fleet1: fixtures.srp.fleets['ohio'],
+        fleet2: fixtures.srp.fleets['texas']
+      };
       const expected = {
         fleet1: {
           name: 'ohio',
@@ -147,6 +153,37 @@ describe('simulations', function() {
         }
       };
       for (let i = 0; i < 6; i++) {
+        fleets = simulate.srp.fightFrame(fixtures.srp.balancingSheet, fleets.fleet1, fleets.fleet2);
+      }
+      expect(fleets).to.eql(expected);
+      done();
+    });
+    it('should crush a significant smaller fleet after 3 frames', done => {
+      let fleets = {
+        fleet1: fixtures.srp.fleets['ohio'],
+        fleet2: fixtures.srp.fleets['michigan']
+      };
+      const expected = {
+        fleet1: {
+          name: 'ohio',
+          ships:{
+            fighter: 0,
+            corvette: 41,
+            cruiser: 25,
+            dreadnought: 5
+          }
+        },
+        fleet2: {
+          name: 'michigan',
+          ships:{
+            fighter: 0,
+            corvette: 0,
+            cruiser: 0,
+            dreadnought: 0
+          }
+        }
+      };
+      for (let i = 0; i < 4; i++) {
         fleets = simulate.srp.fightFrame(fixtures.srp.balancingSheet, fleets.fleet1, fleets.fleet2);
       }
       expect(fleets).to.eql(expected);

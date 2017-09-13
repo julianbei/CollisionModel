@@ -71,7 +71,7 @@ module.exports = {
       }
     },
     fleets: {
-      fleet1: {
+      'ohio': {
         name: 'ohio',
         ships:{
           fighter: 100,
@@ -80,13 +80,22 @@ module.exports = {
           dreadnought: 5
         }
       },
-      fleet2: {
+      'texas': {
         name: 'texas',
         ships:{
           fighter: 100,
           corvette: 50,
           cruiser: 25,
           dreadnought: 5
+        }
+      },
+      'michigan': {
+        name: 'michigan',
+        ships:{
+          fighter: 30,
+          corvette: 65,
+          cruiser: 2,
+          dreadnought: 1
         }
       }
     }
