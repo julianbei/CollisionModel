@@ -32,7 +32,26 @@ function numericDestruction(fleet1, fleet2){
     };
 }
 
+function numericFightFrame(fleet1, fleet2){
+    const power1 = Math.round(fleet1.ships / 10);
+    const power2 = Math.round(fleet2.ships / 10);
+    const result = {
+        fleet1: {
+            name: fleet1.name,
+            ships: fleet1.ships - power2
+        },
+        fleet2: {
+            name: fleet2.name,
+            ships: fleet2.ships - power1
+        }
+    };
+    if(result.fleet1.ships < 0) result.fleet1.ships = 0;
+    if(result.fleet2.ships < 0) result.fleet2.ships = 0;
+    return result;
+}
+
 module.exports = {
     numericDecision,
-    numericDestruction
+    numericDestruction,
+    numericFightFrame
 };
