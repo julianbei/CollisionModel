@@ -1,10 +1,10 @@
-function numericDecision(fleet1, fleet2){
+function decision(fleet1, fleet2){
     if (fleet1.ships > fleet2.ships) return fleet1;
     if (fleet1.ships < fleet2.ships) return fleet2;
     return null;
 }
 
-function numericDestruction(fleet1, fleet2){
+function destruction(fleet1, fleet2){
     // simulate destruction of ships
     let ships = fleet1.ships - fleet2.ships;
     // clone parameter objects for immutability
@@ -32,7 +32,7 @@ function numericDestruction(fleet1, fleet2){
     };
 }
 
-function numericFightFrame(fleet1, fleet2){
+function fightFrame(fleet1, fleet2){
     const power1 = Math.round(fleet1.ships / 10) || 1;
     const power2 = Math.round(fleet2.ships / 10) || 1;
     const result = {
@@ -51,7 +51,7 @@ function numericFightFrame(fleet1, fleet2){
 }
 
 module.exports = {
-    numericDecision,
-    numericDestruction,
-    numericFightFrame
+    decision,
+    destruction,
+    fightFrame
 };

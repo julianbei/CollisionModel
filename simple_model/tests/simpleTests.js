@@ -4,41 +4,41 @@ const fixtures = require('./fixtures/simple');
 
 describe('simulations', function() {
 
-    describe('numericDecision', function() {
+    describe('numeric decision', function() {
         it('should find the winner of two unequal fleets', () => {
-            expect(simulate.numericDecision(fixtures.orion, fixtures.commonwealth)).to.eql(fixtures.commonwealth);
-            expect(simulate.numericDecision(fixtures.commonwealth, fixtures.orion)).to.eql(fixtures.commonwealth);
+            expect(simulate.numeric.decision(fixtures.orion, fixtures.commonwealth)).to.eql(fixtures.commonwealth);
+            expect(simulate.numeric.decision(fixtures.commonwealth, fixtures.orion)).to.eql(fixtures.commonwealth);
         });
         it('should identify equal fleets as a draw', () => {
-            expect(simulate.numericDecision(fixtures.hasle, fixtures.commonwealth)).to.be.null;
+            expect(simulate.numeric.decision(fixtures.hasle, fixtures.commonwealth)).to.be.null;
         });
     });
 
-    describe('NumericDestruction', function() {
+    describe('Numeric destruction', function() {
         it('should find the winner of two unequal fleets', () => {
             const result = {
                 winner: {name: 'orion', ships:0},
                 looser: {name: 'commonwealth', ships:5}
             };
-            expect(simulate.numericDestruction(fixtures.orion, fixtures.commonwealth)).to.eql(result);
-            expect(simulate.numericDestruction(fixtures.commonwealth, fixtures.orion)).to.eql(result);
+            expect(simulate.numeric.destruction(fixtures.orion, fixtures.commonwealth)).to.eql(result);
+            expect(simulate.numeric.destruction(fixtures.commonwealth, fixtures.orion)).to.eql(result);
         });
         it('should identify equal fleets as a draw', () => {
             const result = {
                 draw1: {name: 'hasle', ships:0},
                 draw2: {name: 'commonwealth', ships:0}
             };
-            expect(simulate.numericDestruction(fixtures.hasle, fixtures.commonwealth)).to.eql(result);
+            expect(simulate.numeric.destruction(fixtures.hasle, fixtures.commonwealth)).to.eql(result);
         });
     });
 
-    describe('numericFightFrame', function() {
+    describe('fightFrame', function() {
         it('should reduce shipcount by rounded 1/10 of competitor ships', () => {
             const result = {
                 fleet1: {name: 'orion', ships:265},
                 fleet2: {name: 'commonwealth', ships:270}
             };
-            expect(simulate.numericFightFrame(fixtures.orion, fixtures.commonwealth)).to.eql(result);
+            expect(simulate.numeric.fightFrame(fixtures.orion, fixtures.commonwealth)).to.eql(result);
         });
         it('should produce a bigger gap after 5 rounds', () => {
             const result = {
@@ -52,7 +52,7 @@ describe('simulations', function() {
             };
 
             for (let i = 0; i < 6; i++) {
-                fleets = simulate.numericFightFrame(fleets.fleet1, fleets.fleet2);
+                fleets = simulate.numeric.fightFrame(fleets.fleet1, fleets.fleet2);
             }
 
             expect(fleets).to.eql(result);
@@ -68,7 +68,7 @@ describe('simulations', function() {
 
             while(!winner){
                 counter++;
-                fleets = simulate.numericFightFrame(fleets.fleet1, fleets.fleet2);
+                fleets = simulate.numeric.fightFrame(fleets.fleet1, fleets.fleet2);
                 if(fleets.fleet1.ships <= 0 || fleets.fleet2.ships <= 0) winner = true;
             }
             expect(counter).to.eql(25);
@@ -86,7 +86,7 @@ describe('simulations', function() {
             let winner = false;
 
             while(!winner){
-                fleets = simulate.numericFightFrame(fleets.fleet1, fleets.fleet2);
+                fleets = simulate.numeric.fightFrame(fleets.fleet1, fleets.fleet2);
                 if(fleets.fleet1.ships <= 0 || fleets.fleet2.ships <= 0) winner = true;
             }
             expect(fleets.fleet1.ships).to.eql(0);
