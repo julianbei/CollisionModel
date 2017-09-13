@@ -77,7 +77,7 @@ describe('simulations', function() {
         done();
       });
 
-      it('should properly clalculate a draw', done => {
+      it('should properly calculate a draw', done => {
         let fleets = {
           fleet1:fixtures.numeric.commonwealth,
           fleet2:fixtures.numeric.hasle
