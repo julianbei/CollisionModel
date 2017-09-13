@@ -7,7 +7,7 @@
     "test": "mocha ./tests/*",
     "ci": "yarn run lint && yarn run test",
     "lint": "eslint ./tests/**.js ./src/*.js",
-    "lint-fix": "eslint ./tests/**.js ./src/*.js --fix"
+    "lint-fix": "eslint ./tests/**/*.js ./src/**/*.js --fix"
   },
   "devDependencies": {
     "chai": "^4.1.2",
