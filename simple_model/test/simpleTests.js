@@ -206,4 +206,18 @@ describe('simulations', function() {
       done();
     });
   });
+
+  describe('unit simple', function() {
+    const unit = simulate.unitSimple;
+    it('should work', done => {
+      let fighter1 = new unit.Ship(300, 150, 50, 100, 50);
+      let fighter2 = new unit.Ship(300, 100, 75, 50, 100);
+      let winner = false;
+      while(!winner){
+        unit.fightFrame(fighter1, fighter2);
+        if(!fighter1.alive() || !fighter2.alive()) winner = true;
+      }
+      done();
+    });
+  });
 });
