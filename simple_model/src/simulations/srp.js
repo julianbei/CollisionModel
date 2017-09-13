@@ -9,66 +9,6 @@
 //     dreadnought: 1
 //   }
 // };
-
-const balancingSheet = {
-  combatClasses: [
-    'fighter',
-    'corvette',
-    'cruiser',
-    'dreadnought'
-  ],
-  fighter: {
-    priorities:[
-      'fighter',
-      'dreadnought',
-      'cruiser',
-      'corvette'
-    ],
-    fighter: 0.1,
-    corvette: 0.02,
-    cruiser: 0.04,
-    dreadnought: 0.05
-  },
-  corvette: {
-    priorities:[
-      'fighter',
-      'corvette',
-      'cruiser',
-      'dreadnought'
-    ],
-    fighter: 1,
-    corvette: 0.2,
-    cruiser: 0.2,
-    dreadnought: 0.04
-  },
-  cruiser: {
-    priorities:[
-      'corvette',
-      'cruiser',
-      'dreadnought',
-      'fighter'
-    ],
-    fighter: 0.5,
-    corvette: 0.5,
-    cruiser: 0.1,
-    dreadnought: 0.2
-  },
-  dreadnought: {
-    priorities:[
-      'cruiser',
-      'dreadnought',
-      'corvette',
-      'fighter'
-    ],
-    fighter: 0.10,
-    corvette: 0.10,
-    cruiser: 0.30,
-    dreadnought: 0.5
-  }
-};
-
-
-
 function copyFleet(fleet){
   return {
     name: fleet.name,
@@ -90,7 +30,7 @@ function dealDamage(atacker, target, ratio){
   return {atacker, dealt};
 }
 
-function fightPriority(atacker, shipClass){
+function fightPriority(balancingSheet, atacker, shipClass){
   return function(ships){
     let result = {};
     let fight = {atacker, target: 0};
@@ -102,11 +42,11 @@ function fightPriority(atacker, shipClass){
   };
 }
 
-function dealFleetDamage(atacker, target){
+function dealFleetDamage(balancingSheet, atacker, target){
   atacker = copyFleet(atacker);
   target = copyFleet(target);
   return balancingSheet.combatClasses
-    .map(shipClass => fightPriority(atacker.ships[shipClass], shipClass))
+    .map(shipClass => fightPriority(balancingSheet, atacker.ships[shipClass], shipClass))
     .map(combat => combat(target.ships))
     .reduce((p, c) => {
       return {
@@ -118,15 +58,15 @@ function dealFleetDamage(atacker, target){
     }, target.ships);
 }
 
-function fightFrame(fleet1, fleet2){
+function fightFrame(balancingSheet, fleet1, fleet2){
   return {
     fleet1: {
       name: fleet1.name,
-      ships: dealFleetDamage(fleet2, fleet1)
+      ships: dealFleetDamage(balancingSheet, fleet2, fleet1)
     },
     fleet2: {
       name: fleet2.name,
-      ships: dealFleetDamage(fleet1, fleet2)
+      ships: dealFleetDamage(balancingSheet, fleet1, fleet2)
     }
   };
 }
