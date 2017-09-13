@@ -95,4 +95,100 @@ describe('simulations', function() {
       });
     });
   });
+
+  describe('Stone, Rock and Paper (srp)', function() {
+    it('should destroy primary small ships in the first frame', done => {
+      const fleets = {
+        fleet1: {
+          name: 'ohio',
+          ships:{
+            fighter: 100,
+            corvette: 50,
+            cruiser: 25,
+            dreadnought: 5
+          }
+        },
+        fleet2: {
+          name: 'texas',
+          ships:{
+            fighter: 100,
+            corvette: 50,
+            cruiser: 25,
+            dreadnought: 5
+          }
+        }
+      };
+      const expected = {
+        fleet1: {
+          name: 'ohio',
+          ships:{
+            fighter: 40,
+            corvette: 38,
+            cruiser: 24,
+            dreadnought: 5
+          }
+        },
+        fleet2: {
+          name: 'texas',
+          ships:{
+            fighter: 40,
+            corvette: 38,
+            cruiser: 24,
+            dreadnought: 5
+          }
+        }
+      };
+      const result = simulate.srp.fightFrame(fleets.fleet1, fleets.fleet2);
+      expect(result).to.eql(expected);
+      done();
+    });
+
+    it('should have destroyed all small ships after 5 frames', done => {
+      let fleets = {
+        fleet1: {
+          name: 'ohio',
+          ships:{
+            fighter: 100,
+            corvette: 50,
+            cruiser: 25,
+            dreadnought: 5
+          }
+        },
+        fleet2: {
+          name: 'texas',
+          ships:{
+            fighter: 100,
+            corvette: 50,
+            cruiser: 25,
+            dreadnought: 5
+          }
+        }
+      };
+      const expected = {
+        fleet1: {
+          name: 'ohio',
+          ships:{
+            fighter: 0,
+            corvette: 0,
+            cruiser: 16,
+            dreadnought: 4
+          }
+        },
+        fleet2: {
+          name: 'texas',
+          ships:{
+            fighter: 0,
+            corvette: 0,
+            cruiser: 16,
+            dreadnought: 4
+          }
+        }
+      };
+      for (let i = 0; i < 6; i++) {
+        fleets = simulate.srp.fightFrame(fleets.fleet1, fleets.fleet2);
+      }
+      expect(fleets).to.eql(expected);
+      done();
+    });
+  });
 });
