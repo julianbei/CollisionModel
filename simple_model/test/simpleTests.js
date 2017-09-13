@@ -169,8 +169,8 @@ describe('simulations', function() {
           ships:{
             fighter: 0,
             corvette: 41,
-            cruiser: 25,
-            dreadnought: 5
+            cruiser: 22,
+            dreadnought: 1
           }
         },
         fleet2: {
@@ -187,6 +187,22 @@ describe('simulations', function() {
         fleets = simulate.srp.fightFrame(fixtures.srp.balancingSheet, fleets.fleet1, fleets.fleet2);
       }
       expect(fleets).to.eql(expected);
+      done();
+    });
+    it('should ensure a finite fight', done => {
+      let fleets = {
+        fleet1: fixtures.srp.fleets['ohio'],
+        fleet2: fixtures.srp.fleets['texas']
+      };
+      const crunch = (obj) => Object.keys(obj).reduce((p, c) => p+obj[c], 0);
+      let counter = 0;
+      let winner = false;
+      while(!winner){
+        counter++;
+        fleets = simulate.srp.fightFrame(fixtures.srp.balancingSheet, fleets.fleet1, fleets.fleet2);
+        if(crunch(fleets.fleet1.ships) == 0 || crunch(fleets.fleet2.ships) == 0) winner = true;
+      }
+      expect(counter).to.eql(21);
       done();
     });
   });

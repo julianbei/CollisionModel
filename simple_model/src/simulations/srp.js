@@ -9,6 +9,10 @@
 //     dreadnought: 1
 //   }
 // };
+function crunchFleet(fleet){
+  return Object.keys(fleet).reduce((p, c) => p+fleet[c], 0);
+}
+
 function copyFleet(fleet){
   return {
     name: fleet.name,
@@ -38,6 +42,7 @@ function fightPriority(balancingSheet, atacker, shipClass){
       fight = dealDamage(fight.atacker, ships[targetClass], balancingSheet[shipClass][targetClass]);
       result[targetClass] = fight.dealt;
     });
+    if(crunchFleet(result) === 0) result[shipClass] = 1;
     return result;
   };
 }
@@ -72,5 +77,6 @@ function fightFrame(balancingSheet, fleet1, fleet2){
 }
 
 module.exports = {
-  fightFrame
+  fightFrame,
+  crunchFleet
 };
