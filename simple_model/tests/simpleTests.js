@@ -73,7 +73,24 @@ describe('simulations', function() {
             }
             expect(counter).to.eql(25);
             expect(fleets.fleet1.ships).to.eql(0);
-            expect(fleets.fleet2.ships).to.eql(44);
+            expect(fleets.fleet2.ships).to.eql(43);
+            done();
+        });
+
+        it('should properly clalculate a draw', done => {
+            let fleets = {
+                fleet1:fixtures.commonwealth,
+                fleet2:fixtures.hasle
+            };
+
+            let winner = false;
+
+            while(!winner){
+                fleets = simulate.numericFightFrame(fleets.fleet1, fleets.fleet2);
+                if(fleets.fleet1.ships <= 0 || fleets.fleet2.ships <= 0) winner = true;
+            }
+            expect(fleets.fleet1.ships).to.eql(0);
+            expect(fleets.fleet2.ships).to.eql(0);
             done();
         });
     });

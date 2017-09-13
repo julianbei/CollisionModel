@@ -33,8 +33,8 @@ function numericDestruction(fleet1, fleet2){
 }
 
 function numericFightFrame(fleet1, fleet2){
-    const power1 = Math.round(fleet1.ships / 10);
-    const power2 = Math.round(fleet2.ships / 10);
+    const power1 = Math.round(fleet1.ships / 10) || 1;
+    const power2 = Math.round(fleet2.ships / 10) || 1;
     const result = {
         fleet1: {
             name: fleet1.name,
