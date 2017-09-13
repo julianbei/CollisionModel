@@ -1,3 +1,9 @@
+// simple numeric ship fight simulations
+// fleet object should look like:
+// {
+//   name: 'orion',
+//   ships: 295
+// }
 function decision(fleet1, fleet2){
   if (fleet1.ships > fleet2.ships) return fleet1;
   if (fleet1.ships < fleet2.ships) return fleet2;
