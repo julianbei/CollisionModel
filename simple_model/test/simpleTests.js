@@ -1,6 +1,6 @@
 const expect = require('chai').expect;
 const simulate = require('./../src/index').simulate;
-const fixtures = require('./fixtures/simple');
+const fixtures = require('./fixtures');
 
 describe('simulations', function() {
   describe('numeric', function() {
