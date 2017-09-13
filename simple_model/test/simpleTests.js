@@ -97,83 +97,8 @@ describe('simulations', function() {
   });
 
   describe('Stone, Rock and Paper (srp)', function() {
-    const balancingSheet = {
-      combatClasses: [
-        'fighter',
-        'corvette',
-        'cruiser',
-        'dreadnought'
-      ],
-      fighter: {
-        priorities:[
-          'fighter',
-          'dreadnought',
-          'cruiser',
-          'corvette'
-        ],
-        fighter: 0.1,
-        corvette: 0.02,
-        cruiser: 0.04,
-        dreadnought: 0.05
-      },
-      corvette: {
-        priorities:[
-          'fighter',
-          'corvette',
-          'cruiser',
-          'dreadnought'
-        ],
-        fighter: 1,
-        corvette: 0.2,
-        cruiser: 0.2,
-        dreadnought: 0.04
-      },
-      cruiser: {
-        priorities:[
-          'corvette',
-          'cruiser',
-          'dreadnought',
-          'fighter'
-        ],
-        fighter: 0.5,
-        corvette: 0.5,
-        cruiser: 0.1,
-        dreadnought: 0.2
-      },
-      dreadnought: {
-        priorities:[
-          'cruiser',
-          'dreadnought',
-          'corvette',
-          'fighter'
-        ],
-        fighter: 0.10,
-        corvette: 0.10,
-        cruiser: 0.30,
-        dreadnought: 0.5
-      }
-    };
     it('should destroy primary small ships in the first frame', done => {
-      const fleets = {
-        fleet1: {
-          name: 'ohio',
-          ships:{
-            fighter: 100,
-            corvette: 50,
-            cruiser: 25,
-            dreadnought: 5
-          }
-        },
-        fleet2: {
-          name: 'texas',
-          ships:{
-            fighter: 100,
-            corvette: 50,
-            cruiser: 25,
-            dreadnought: 5
-          }
-        }
-      };
+      let fleets = fixtures.srp.fleets;
       const expected = {
         fleet1: {
           name: 'ohio',
@@ -194,32 +119,13 @@ describe('simulations', function() {
           }
         }
       };
-      const result = simulate.srp.fightFrame(balancingSheet, fleets.fleet1, fleets.fleet2);
+      const result = simulate.srp.fightFrame(fixtures.srp.balancingSheet, fleets.fleet1, fleets.fleet2);
       expect(result).to.eql(expected);
       done();
     });
 
     it('should have destroyed all small ships after 5 frames', done => {
-      let fleets = {
-        fleet1: {
-          name: 'ohio',
-          ships:{
-            fighter: 100,
-            corvette: 50,
-            cruiser: 25,
-            dreadnought: 5
-          }
-        },
-        fleet2: {
-          name: 'texas',
-          ships:{
-            fighter: 100,
-            corvette: 50,
-            cruiser: 25,
-            dreadnought: 5
-          }
-        }
-      };
+      let fleets = fixtures.srp.fleets;
       const expected = {
         fleet1: {
           name: 'ohio',
@@ -241,7 +147,7 @@ describe('simulations', function() {
         }
       };
       for (let i = 0; i < 6; i++) {
-        fleets = simulate.srp.fightFrame(balancingSheet, fleets.fleet1, fleets.fleet2);
+        fleets = simulate.srp.fightFrame(fixtures.srp.balancingSheet, fleets.fleet1, fleets.fleet2);
       }
       expect(fleets).to.eql(expected);
       done();
