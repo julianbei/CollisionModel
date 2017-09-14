@@ -1,6 +1,5 @@
-
 class Ship {
-  constructor(health, shield, armor, laser, bullet) {
+  constructor(health, armor, shield, bullet, laser) {
     this.base = 100;
     this.health = health;
     this.shield = shield;
@@ -34,13 +33,4 @@ class Ship {
   }
 }
 
-function fightFrame(fighter1, fighter2){
-  fighter1.fire(fighter2);
-  fighter2.fire(fighter1);
-  return {fighter1, fighter2};
-}
-
-module.exports={
-  Ship,
-  fightFrame
-};
+module.exports = Ship;

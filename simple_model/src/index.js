@@ -1,2 +1,3 @@
 const simulate = require('./simulations/index');
-module.exports = {simulate};
+const units = require('./unitSimulation/index');
+module.exports = {simulate,units};

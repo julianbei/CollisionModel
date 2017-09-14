@@ -1,5 +1,6 @@
 const expect = require('chai').expect;
 const simulate = require('./../src/index').simulate;
+const units = require('./../src/index').units;
 const fixtures = require('./fixtures');
 
 describe('simulations', function() {
@@ -208,16 +209,51 @@ describe('simulations', function() {
   });
 
   describe('unit simple', function() {
-    const unit = simulate.unitSimple;
-    it('should work', done => {
-      let fighter1 = new unit.Ship(300, 150, 50, 100, 50);
-      let fighter2 = new unit.Ship(300, 100, 75, 50, 100);
+    it('Fighters should elimnate themselves in 6 frames', done => {
+      const fighter1 = new units.classes.Fighter();
+      const fighter2 = new units.classes.Fighter();
       let winner = false;
+      let counter = 0;
       while(!winner){
-        unit.fightFrame(fighter1, fighter2);
+        counter++;
+        units.combatFrame(fighter1, fighter2);
         if(!fighter1.alive() || !fighter2.alive()) winner = true;
       }
+      expect(fighter1.alive()).to.be.false;
+      expect(fighter2.alive()).to.be.false;
+      expect(counter).to.eql(6);
       done();
     });
+    it('Corvettes should elimnate themselves in 7 frames', done => {
+      const corvette1 = new units.classes.Corvette();
+      const corvette2 = new units.classes.Corvette();
+      let winner = false;
+      let counter = 0;
+      while(!winner){
+        counter++;
+        units.combatFrame(corvette1, corvette2);
+        if(!corvette1.alive() || !corvette2.alive()) winner = true;
+      }
+      expect(corvette1.alive()).to.be.false;
+      expect(corvette2.alive()).to.be.false;
+      expect(counter).to.eql(7);
+      done();
+    });
+    it('Corvettes should elimnate fighters in 4 frames', done => {
+      const corvette1 = new units.classes.Corvette();
+      const fighter2 = new units.classes.Fighter();
+      let winner = false;
+      let counter = 0;
+      while(!winner){
+        counter++;
+        units.combatFrame(corvette1, fighter2);
+        if(!corvette1.alive() || !fighter2.alive()) winner = true;
+      }
+      expect(corvette1.alive()).to.be.true;
+      expect(fighter2.alive()).to.be.false;
+      expect(counter).to.eql(4);
+      done();
+    });
+    
   });
 });
