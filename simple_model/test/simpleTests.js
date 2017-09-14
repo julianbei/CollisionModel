@@ -224,7 +224,7 @@ describe('simulations', function() {
       expect(counter).to.eql(6);
       done();
     });
-    it('Corvettes should elimnate themselves in 7 frames', done => {
+    it('Corvettes should elimnate themselves in 10 frames', done => {
       const ship1 = new units.classes.Corvette();
       const ship2 = new units.classes.Corvette();
       let winner = false;
@@ -236,7 +236,7 @@ describe('simulations', function() {
       }
       expect(ship1.alive()).to.be.false;
       expect(ship2.alive()).to.be.false;
-      expect(counter).to.eql(7);
+      expect(counter).to.eql(10);
       done();
     });
     it('Corvettes should elimnate fighters in 4 frames', done => {
@@ -255,7 +255,7 @@ describe('simulations', function() {
       done();
     });
 
-    it('Cruisers should elimnate themselves in 12 frames', done => {
+    it('Cruisers should elimnate themselves in 30 frames', done => {
       const ship1 = new units.classes.Cruiser();
       const ship2 = new units.classes.Cruiser();
       let winner = false;
@@ -267,7 +267,7 @@ describe('simulations', function() {
       }
       expect(ship1.alive()).to.be.false;
       expect(ship2.alive()).to.be.false;
-      expect(counter).to.eql(12);
+      expect(counter).to.eql(30);
       done();
     });
 
@@ -303,7 +303,7 @@ describe('simulations', function() {
       done();
     });
 
-    it('Dreadnaughts should elimnate themselves in 25 frames', done => {
+    it('Dreadnaughts should elimnate themselves in 60 frames', done => {
       const ship1 = new units.classes.Dreadnaught();
       const ship2 = new units.classes.Dreadnaught();
       let winner = false;
@@ -315,11 +315,11 @@ describe('simulations', function() {
       }
       expect(ship1.alive()).to.be.false;
       expect(ship2.alive()).to.be.false;
-      expect(counter).to.eql(25);
+      expect(counter).to.eql(60);
       done();
     });
 
-    it('Dreadnaughts should elimnate cruisers in 6 frames', done => {
+    it('Dreadnaughts should elimnate cruisers in 24 frames', done => {
       const ship1 = new units.classes.Dreadnaught();
       const ship2 = new units.classes.Cruiser();
       let winner = false;
@@ -331,7 +331,7 @@ describe('simulations', function() {
       }
       expect(ship1.alive()).to.be.true;
       expect(ship2.alive()).to.be.false;
-      expect(counter).to.eql(6);
+      expect(counter).to.eql(24);
       done();
     });
 

@@ -2,7 +2,8 @@ const Ship = require('./Ship');
 
 class Cruiser extends Ship{
   constructor() {
-    super(5000, 600, 8000, 200, 200);
+    //  (health, hullSize, armor, shield, bullet, laser)
+    super(5000,  2000,     600,   8000,   250,    300);
   }
 }
 

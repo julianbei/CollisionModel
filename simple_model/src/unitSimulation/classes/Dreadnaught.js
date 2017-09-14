@@ -1,9 +1,10 @@
 const Ship = require('./Ship');
 
-class Cruiser extends Ship{
+class Dreadnought extends Ship{
   constructor() {
-    super(25000, 800, 10000, 380, 370);
+    //  (health, hullSize, armor, shield, bullet, laser)
+    super(24000,  1600,     800,   10000,   350,    370);
   }
 }
 
-module.exports = Cruiser;
+module.exports = Dreadnought;
