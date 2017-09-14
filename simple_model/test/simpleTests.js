@@ -303,5 +303,68 @@ describe('simulations', function() {
       done();
     });
 
+    it('Dreadnaughts should elimnate themselves in 25 frames', done => {
+      const ship1 = new units.classes.Dreadnaught();
+      const ship2 = new units.classes.Dreadnaught();
+      let winner = false;
+      let counter = 0;
+      while(!winner){
+        counter++;
+        units.combatFrame(ship1, ship2);
+        if(!ship1.alive() || !ship2.alive()) winner = true;
+      }
+      expect(ship1.alive()).to.be.false;
+      expect(ship2.alive()).to.be.false;
+      expect(counter).to.eql(25);
+      done();
+    });
+
+    it('Dreadnaughts should elimnate cruisers in 6 frames', done => {
+      const ship1 = new units.classes.Dreadnaught();
+      const ship2 = new units.classes.Cruiser();
+      let winner = false;
+      let counter = 0;
+      while(!winner){
+        counter++;
+        units.combatFrame(ship1, ship2);
+        if(!ship1.alive() || !ship2.alive()) winner = true;
+      }
+      expect(ship1.alive()).to.be.true;
+      expect(ship2.alive()).to.be.false;
+      expect(counter).to.eql(6);
+      done();
+    });
+
+    it('Dreadnaughts should elimnate corvettes in 2 frames', done => {
+      const ship1 = new units.classes.Dreadnaught();
+      const ship2 = new units.classes.Corvette();
+      let winner = false;
+      let counter = 0;
+      while(!winner){
+        counter++;
+        units.combatFrame(ship1, ship2);
+        if(!ship1.alive() || !ship2.alive()) winner = true;
+      }
+      expect(ship1.alive()).to.be.true;
+      expect(ship2.alive()).to.be.false;
+      expect(counter).to.eql(3);
+      done();
+    });
+
+    it('Dreadnaughts should elimnate fighters in 1 frames', done => {
+      const ship1 = new units.classes.Dreadnaught();
+      const ship2 = new units.classes.Fighter();
+      let winner = false;
+      let counter = 0;
+      while(!winner){
+        counter++;
+        units.combatFrame(ship1, ship2);
+        if(!ship1.alive() || !ship2.alive()) winner = true;
+      }
+      expect(ship1.alive()).to.be.true;
+      expect(ship2.alive()).to.be.false;
+      expect(counter).to.eql(1);
+      done();
+    });
   });
 });
