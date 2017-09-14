@@ -210,50 +210,98 @@ describe('simulations', function() {
 
   describe('unit simple', function() {
     it('Fighters should elimnate themselves in 6 frames', done => {
-      const fighter1 = new units.classes.Fighter();
-      const fighter2 = new units.classes.Fighter();
+      const ship1 = new units.classes.Fighter();
+      const ship2 = new units.classes.Fighter();
       let winner = false;
       let counter = 0;
       while(!winner){
         counter++;
-        units.combatFrame(fighter1, fighter2);
-        if(!fighter1.alive() || !fighter2.alive()) winner = true;
+        units.combatFrame(ship1, ship2);
+        if(!ship1.alive() || !ship2.alive()) winner = true;
       }
-      expect(fighter1.alive()).to.be.false;
-      expect(fighter2.alive()).to.be.false;
+      expect(ship1.alive()).to.be.false;
+      expect(ship2.alive()).to.be.false;
       expect(counter).to.eql(6);
       done();
     });
     it('Corvettes should elimnate themselves in 7 frames', done => {
-      const corvette1 = new units.classes.Corvette();
-      const corvette2 = new units.classes.Corvette();
+      const ship1 = new units.classes.Corvette();
+      const ship2 = new units.classes.Corvette();
       let winner = false;
       let counter = 0;
       while(!winner){
         counter++;
-        units.combatFrame(corvette1, corvette2);
-        if(!corvette1.alive() || !corvette2.alive()) winner = true;
+        units.combatFrame(ship1, ship2);
+        if(!ship1.alive() || !ship2.alive()) winner = true;
       }
-      expect(corvette1.alive()).to.be.false;
-      expect(corvette2.alive()).to.be.false;
+      expect(ship1.alive()).to.be.false;
+      expect(ship2.alive()).to.be.false;
       expect(counter).to.eql(7);
       done();
     });
     it('Corvettes should elimnate fighters in 4 frames', done => {
-      const corvette1 = new units.classes.Corvette();
-      const fighter2 = new units.classes.Fighter();
+      const ship1 = new units.classes.Corvette();
+      const ship2 = new units.classes.Fighter();
       let winner = false;
       let counter = 0;
       while(!winner){
         counter++;
-        units.combatFrame(corvette1, fighter2);
-        if(!corvette1.alive() || !fighter2.alive()) winner = true;
+        units.combatFrame(ship1, ship2);
+        if(!ship1.alive() || !ship2.alive()) winner = true;
       }
-      expect(corvette1.alive()).to.be.true;
-      expect(fighter2.alive()).to.be.false;
+      expect(ship1.alive()).to.be.true;
+      expect(ship2.alive()).to.be.false;
       expect(counter).to.eql(4);
       done();
     });
-    
+
+    it('Cruisers should elimnate themselves in 12 frames', done => {
+      const ship1 = new units.classes.Cruiser();
+      const ship2 = new units.classes.Cruiser();
+      let winner = false;
+      let counter = 0;
+      while(!winner){
+        counter++;
+        units.combatFrame(ship1, ship2);
+        if(!ship1.alive() || !ship2.alive()) winner = true;
+      }
+      expect(ship1.alive()).to.be.false;
+      expect(ship2.alive()).to.be.false;
+      expect(counter).to.eql(12);
+      done();
+    });
+
+    it('Cruisers should elimnate corvettes in 4 frames', done => {
+      const ship1 = new units.classes.Cruiser();
+      const ship2 = new units.classes.Corvette();
+      let winner = false;
+      let counter = 0;
+      while(!winner){
+        counter++;
+        units.combatFrame(ship1, ship2);
+        if(!ship1.alive() || !ship2.alive()) winner = true;
+      }
+      expect(ship1.alive()).to.be.true;
+      expect(ship2.alive()).to.be.false;
+      expect(counter).to.eql(4);
+      done();
+    });
+
+    it('Cruisers should elimnate fighters in 2 frames', done => {
+      const ship1 = new units.classes.Cruiser();
+      const ship2 = new units.classes.Fighter();
+      let winner = false;
+      let counter = 0;
+      while(!winner){
+        counter++;
+        units.combatFrame(ship1, ship2);
+        if(!ship1.alive() || !ship2.alive()) winner = true;
+      }
+      expect(ship1.alive()).to.be.true;
+      expect(ship2.alive()).to.be.false;
+      expect(counter).to.eql(2);
+      done();
+    });
+
   });
 });
