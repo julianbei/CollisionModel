@@ -1,4 +1,4 @@
-//SRP = Stone Rock Paper
+//rock-paper-scissors
 // This is hard to solve numerically so we have to use a frame based iteration
 // {
 //   name: 'orion',

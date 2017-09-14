@@ -1,3 +1,3 @@
 const numeric = require('./numeric');
-const srp = require('./srp');
-module.exports = {numeric, srp};
+const rps = require('./rps');
+module.exports = {numeric, rps};

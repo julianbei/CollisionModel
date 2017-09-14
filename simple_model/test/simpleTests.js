@@ -97,11 +97,11 @@ describe('simulations', function() {
     });
   });
 
-  describe('Stone, Rock and Paper (srp)', function() {
+  describe('Rock, paper and Scissors (rps)', function() {
     it('should destroy primary small ships in the first frame', done => {
       let fleets = {
-        fleet1: fixtures.srp.fleets['ohio'],
-        fleet2: fixtures.srp.fleets['texas']
+        fleet1: fixtures.rps.fleets['ohio'],
+        fleet2: fixtures.rps.fleets['texas']
       };
       const expected = {
         fleet1: {
@@ -123,15 +123,15 @@ describe('simulations', function() {
           }
         }
       };
-      const result = simulate.srp.fightFrame(fixtures.srp.balancingSheet, fleets.fleet1, fleets.fleet2);
+      const result = simulate.rps.fightFrame(fixtures.rps.balancingSheet, fleets.fleet1, fleets.fleet2);
       expect(result).to.eql(expected);
       done();
     });
 
     it('should have destroyed all small ships after 5 frames', done => {
       let fleets = {
-        fleet1: fixtures.srp.fleets['ohio'],
-        fleet2: fixtures.srp.fleets['texas']
+        fleet1: fixtures.rps.fleets['ohio'],
+        fleet2: fixtures.rps.fleets['texas']
       };
       const expected = {
         fleet1: {
@@ -154,15 +154,15 @@ describe('simulations', function() {
         }
       };
       for (let i = 0; i < 6; i++) {
-        fleets = simulate.srp.fightFrame(fixtures.srp.balancingSheet, fleets.fleet1, fleets.fleet2);
+        fleets = simulate.rps.fightFrame(fixtures.rps.balancingSheet, fleets.fleet1, fleets.fleet2);
       }
       expect(fleets).to.eql(expected);
       done();
     });
     it('should crush a significant smaller fleet after 3 frames', done => {
       let fleets = {
-        fleet1: fixtures.srp.fleets['ohio'],
-        fleet2: fixtures.srp.fleets['michigan']
+        fleet1: fixtures.rps.fleets['ohio'],
+        fleet2: fixtures.rps.fleets['michigan']
       };
       const expected = {
         fleet1: {
@@ -185,22 +185,22 @@ describe('simulations', function() {
         }
       };
       for (let i = 0; i < 4; i++) {
-        fleets = simulate.srp.fightFrame(fixtures.srp.balancingSheet, fleets.fleet1, fleets.fleet2);
+        fleets = simulate.rps.fightFrame(fixtures.rps.balancingSheet, fleets.fleet1, fleets.fleet2);
       }
       expect(fleets).to.eql(expected);
       done();
     });
     it('should ensure a finite fight', done => {
       let fleets = {
-        fleet1: fixtures.srp.fleets['ohio'],
-        fleet2: fixtures.srp.fleets['texas']
+        fleet1: fixtures.rps.fleets['ohio'],
+        fleet2: fixtures.rps.fleets['texas']
       };
       const crunch = (obj) => Object.keys(obj).reduce((p, c) => p+obj[c], 0);
       let counter = 0;
       let winner = false;
       while(!winner){
         counter++;
-        fleets = simulate.srp.fightFrame(fixtures.srp.balancingSheet, fleets.fleet1, fleets.fleet2);
+        fleets = simulate.rps.fightFrame(fixtures.rps.balancingSheet, fleets.fleet1, fleets.fleet2);
         if(crunch(fleets.fleet1.ships) == 0 || crunch(fleets.fleet2.ships) == 0) winner = true;
       }
       expect(counter).to.eql(21);
