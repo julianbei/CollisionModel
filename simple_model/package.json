@@ -7,8 +7,8 @@
     "start": "node ./src/startGame.js",
     "test": "mocha",
     "ci": "yarn run lint && yarn run test",
-    "lint": "eslint ./tests/**.js ./src/*.js",
-    "lint-fix": "eslint ./tests/**/*.js ./src/**/*.js --fix"
+    "lint": "eslint ./test/**.js ./src/*.js",
+    "lint-fix": "eslint ./test/**/*.js ./src/**/*.js --fix"
   },
   "devDependencies": {
     "chai": "^4.1.2",
