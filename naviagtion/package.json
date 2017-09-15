@@ -1,0 +1,20 @@
+{
+  "name": "naviagtion",
+  "version": "1.0.0",
+  "main": "./src/index.js",
+  "scripts": {
+    "test": "mocha",
+    "ci": "yarn run lint && yarn run test",
+    "lint": "eslint ./test/**.js ./src/*.js",
+    "lint-fix": "eslint ./test/**/*.js ./src/**/*.js --fix"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "eslint": "^4.6.1",
+    "mocha": "^3.5.3"
+  },
+  "dependencies": {
+    "clui": "^0.3.6"
+  },
+  "license": "MIT"
+}
