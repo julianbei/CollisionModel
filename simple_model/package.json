@@ -13,5 +13,8 @@
     "chai": "^4.1.2",
     "eslint": "^4.6.1",
     "mocha": "^3.5.3"
+  },
+  "dependencies": {
+    "clui": "^0.3.6"
   }
 }

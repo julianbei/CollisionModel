@@ -1,11 +1,36 @@
 class Ship {
   constructor(health, hullSize, armor, shield, bullet, laser) {
     this.hullSize = hullSize;
+
+    this.maxHealth = health;
     this.health = health;
+
+    this.maxShield = shield;
     this.shield = shield;
+
     this.armor = armor;
+
     this.laser = laser;
     this.bullet = bullet;
+  }
+  getStateReport(){
+    return {
+      class: this.constructor.name,
+      hullSize: this.hullSize,
+      health: {
+        current: this.health,
+        max: this.maxHealth,
+        string: `${this.health}/${this.maxHealth} (${Math.round(this.health/this.maxHealth*100, 2)}%)`
+      },
+      shield: {
+        current: this.shield,
+        max: this.maxShield,
+        string: `${this.shield}/${this.maxShield} (${Math.round(this.shield/this.maxShield*100, 2)}%)`
+      },
+      armor: this.armor,
+      bullet: this.bullet,
+      laser: this.laser
+    };
   }
   bulletHit(power){
     // bullet gun fire power gets reduced by shields and armor
@@ -26,7 +51,7 @@ class Ship {
     // armor_value / hull_size
     let damage = (this.armor/this.hullSize) * armorDamage;
     // the final damage will reduce the health
-    this.health = this.health - damage;
+    this.health = Math.max(this.health - damage, 0);
   }
   laserHit(power){
     // 15% of laser gun fire power ignores the shield
@@ -40,7 +65,7 @@ class Ship {
     this.shield = Math.max(this.shield - shieldDamage, 0);
     // finally the ships health gets reduced by shieldPenetration + rest damage
     let damage = (shieldPenetration + rest);
-    this.health = this.health - damage;
+    this.health = Math.max(this.health - damage, 0);
   }
   fireBullet(ship){
     ship.bulletHit(this.bullet);
