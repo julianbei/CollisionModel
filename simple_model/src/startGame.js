@@ -13,7 +13,7 @@ const gameState = {
 };
 
 function final(state){
-  console.log(state);
+  return state;
 }
 
 game.run(gameState, final);

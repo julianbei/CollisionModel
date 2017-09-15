@@ -4,6 +4,7 @@
   "main": "src/index.js",
   "license": "MIT",
   "scripts": {
+    "start": "node ./src/startGame.js",
     "test": "mocha",
     "ci": "yarn run lint && yarn run test",
     "lint": "eslint ./tests/**.js ./src/*.js",
