@@ -20,7 +20,7 @@ describe('tile navigation system', function() {
     const map = new navigation.Map(20,13);
     map.setContent(unit, {x:5,y:3});
     expect(unit.id).to.eq('test1');
-    expect(unit.tile).to.eql(map.system[5][3]);
+    expect(unit.getPosition()).to.eql(map.system[5][3]);
     done();
   });
 
@@ -30,7 +30,7 @@ describe('tile navigation system', function() {
     map.setContent(unit, {x:5,y:3});
     map.system[5][3].removeContent(unit);
     expect(unit.id).to.eq('test1');
-    expect(unit.tile).to.eq(undefined);
+    expect(unit.getPosition()).to.eq(undefined);
     expect(map.getContent({x:5, y:3})).to.be.empty;
     done();
   });
@@ -41,7 +41,7 @@ describe('tile navigation system', function() {
     map.setContent(unit, {x:5,y:3});
     unit.changePosition({x:2,y:5});
     expect(unit.id).to.eq('test1');
-    expect(unit.tile).to.eq(map.system[2][5]);
+    expect(unit.getPosition()).to.eq(map.system[2][5]);
     expect(map.getContent({x:5, y:3})).to.be.empty;
     done();
   });
@@ -52,8 +52,46 @@ describe('tile navigation system', function() {
     map.setContent(unit, {x:5,y:3});
     unit.removeFromMap();
     expect(unit.id).to.eq('test1');
-    expect(unit.tile).to.eq(undefined);
+    expect(unit.getPosition()).to.eq(undefined);
     expect(map.getContent({x:5, y:3})).to.be.empty;
+    done();
+  });
+  it('find near units', done => {
+    const unit = new navigation.Unit('test1');
+    const neighbor = new navigation.Unit('neighbor');
+    const map = new navigation.Map(20,13);
+    map.setContent(unit, {x:0,y:0});
+    map.setContent(neighbor, {x:1,y:0});
+    const neighbors = unit.findNearUnits(1);
+    expect(neighbors).to.not.be.empty;
+    expect(neighbors[0]).to.eql(neighbor);
+    done();
+  });
+  it('find near units on a larger scale', done => {
+    const unit = new navigation.Unit('test1');
+    const neighbor1 = new navigation.Unit('neighbor1');
+    const neighbor2 = new navigation.Unit('neighbor2');
+    const map = new navigation.Map(20,13);
+    map.setContent(unit, {x:3,y:3});
+    map.setContent(neighbor1, {x:1,y:0});
+    map.setContent(neighbor2, {x:2,y:2});
+    const neighbors = unit.findNearUnits(2);
+    expect(neighbors).to.not.be.empty;
+    expect(neighbors[0]).to.eql(neighbor2);
+    done();
+  });
+  it('find near units on an even larger scale', done => {
+    const unit = new navigation.Unit('test1');
+    const neighbor1 = new navigation.Unit('neighbor1');
+    const neighbor2 = new navigation.Unit('neighbor2');
+    const map = new navigation.Map(20,13);
+    map.setContent(unit, {x:3,y:3});
+    map.setContent(neighbor1, {x:1,y:0});
+    map.setContent(neighbor2, {x:2,y:2});
+    const neighbors = unit.findNearUnits(3);
+    expect(neighbors).to.not.be.empty;
+    expect(neighbors[0]).to.eql(neighbor1);
+    expect(neighbors[1]).to.eql(neighbor2);
     done();
   });
 });

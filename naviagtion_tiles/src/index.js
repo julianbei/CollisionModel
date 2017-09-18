@@ -1,18 +1,25 @@
 class Unit {
   constructor(id) {
     this.id = id;
-    this.tile = undefined;
+    this.position = undefined;
+  }
+  getPosition(){
+    return this.position;
   }
   setPosition(tile){
-    this.tile = tile;
+    this.position = tile;
   }
   changePosition(coords){
-    const old = this.tile;
-    this.tile.system.setContent(this, coords);
+    const old = this.position;
+    this.position.system.setContent(this, coords);
     old.removeContent(this);
   }
   removeFromMap(){
-    this.tile.removeContent(this);
+    this.position.removeContent(this);
+  }
+  findNearUnits(range){
+    return this.position.findNearUnits(range)
+      .filter(unit => unit !== this);
   }
 }
 
@@ -27,13 +34,16 @@ class Tile {
   }
   setContent(unit){
     this.content.push(unit);
-    if(unit.tile) unit.tile.removeContent(unit);
+    if(unit.getPosition()) unit.getPosition().removeContent(unit);
     unit.setPosition(this);
   }
   removeContent(unit){
     this.content = this.content.filter( contended => (contended !== unit));
-    if(unit.tile === this) unit.tile = undefined;
+    if(unit.getPosition() === this) unit.setPosition(undefined);
     return unit;
+  }
+  findNearUnits(range){
+    return this.system.findNearUnits(this.coordinates, range);
   }
 }
 
@@ -55,6 +65,24 @@ class Map {
   setContent(unit, coords){
     const tile = this.system[coords.x][coords.y];
     return tile.setContent(unit);
+  }
+  findNearUnits(coordinates, range){
+    const collection = [];
+    const pole = {
+      x: coordinates.x -range,
+      y: coordinates.y -range,
+    };
+    const square = 1+ range * 2;
+    for (let x = pole.x; x < (square + pole.x); x++) {
+      if(x >= this.system.length || x < 0) continue;
+      for (let y = pole.y; y < (square + pole.y); y++) {
+        if(y >= this.system[0].length || y < 0) continue;
+        collection.push({x,y});
+      }
+    }
+    return collection
+      .map((coords) => this.getContent(coords))
+      .reduce((p, c) => {c.forEach((unit) => p.push(unit)); return p;}, []);
   }
 }
 
