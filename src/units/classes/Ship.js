@@ -1,5 +1,8 @@
-class Ship {
+const Unit = require('./../Unit');
+
+class Ship extends Unit {
   constructor(health, hullSize, armor, shield, bullet, laser) {
+    super();
     this.hullSize = hullSize;
 
     this.maxHealth = health;

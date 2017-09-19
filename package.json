@@ -1,11 +1,12 @@
 {
-  "name": "naviagtion",
+  "name": "CollisionModel",
   "version": "1.0.0",
   "main": "./src/index.js",
   "scripts": {
+    "start": "node ./src/game.js",
     "test": "mocha",
     "ci": "yarn run lint && yarn run test",
-    "lint": "eslint ./test/**.js ./src/*.js",
+    "lint": "eslint ./test/**/*.js ./src/**/*.js",
     "lint-fix": "eslint ./test/**/*.js ./src/**/*.js --fix"
   },
   "devDependencies": {
@@ -16,5 +17,7 @@
   "dependencies": {
     "clui": "^0.3.6"
   },
+  "repository": "https://github.com/julianbei/CollisionModel.git",
+  "author": "julianbei <jul.amelung@gmail.com>",
   "license": "MIT"
 }
