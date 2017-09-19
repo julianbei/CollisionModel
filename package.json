@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "./src/index.js",
   "scripts": {
-    "start": "node ./src/run.js",
+    "start": "node ./src/game.js",
     "test": "mocha",
     "ci": "yarn run lint && yarn run test",
     "lint": "eslint ./test/**/*.js ./src/**/*.js",

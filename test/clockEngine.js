@@ -36,26 +36,4 @@ describe('clockEngine', function() {
 
     clockEngine.nextFrame(combatSimulation, gameState, finish);
   }).timeout(20000);
-
-  // it('should draw a simple fight', done => {
-  // const baseGame = require('./../src/index');
-  //   const ship1 = new units.classes.Dreadnaught();
-  //   const ship2 = new units.classes.Dreadnaught();
-  //
-  //   const gameState = {
-  //     combat: {
-  //       ship1,
-  //       ship2,
-  //     },
-  //     final: false
-  //   };
-  //
-  //   function finish(result){
-  //     expect(result.combat.ship1.alive()).to.be.false;
-  //     expect(result.combat.ship2.alive()).to.be.false;
-  //     done();
-  //   }
-  //
-  //   baseGame.run(gameState, finish);
-  // }).timeout(20000);
 });
