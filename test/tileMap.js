@@ -1,10 +1,10 @@
 const expect = require('chai').expect;
-const navigation = require('./../src/index').navigation;
+const tileMap = require('./../src/index').tileMap;
 const Unit = require('./../src/index').units.Unit;
 
-describe('tile navigation system', function() {
+describe('tile tileMap system', function() {
   it('should create a 2D tile map', done => {
-    const map = new navigation.Map(20,13);
+    const map = new tileMap.Map(20,13);
     expect(map.system.length).to.eq(20);
     expect(map.system[0].length).to.eq(13);
     expect(map.system[0][12].constructor.name).to.eq('Tile');
@@ -18,7 +18,7 @@ describe('tile navigation system', function() {
 
   it('should add a Simple unit to map', done => {
     const unit = new Unit('test1');
-    const map = new navigation.Map(20,13);
+    const map = new tileMap.Map(20,13);
     map.setContent(unit, {x:5,y:3});
     expect(unit.id).to.eq('test1');
     expect(unit.getPosition()).to.eql(map.system[5][3]);
@@ -27,7 +27,7 @@ describe('tile navigation system', function() {
 
   it('should remove a Simple unit from map', done => {
     const unit = new Unit('test1');
-    const map = new navigation.Map(20,13);
+    const map = new tileMap.Map(20,13);
     map.setContent(unit, {x:5,y:3});
     map.system[5][3].removeContent(unit);
     expect(unit.id).to.eq('test1');
@@ -38,7 +38,7 @@ describe('tile navigation system', function() {
 
   it('should change the position of a Simple unit', done => {
     const unit = new Unit('test1');
-    const map = new navigation.Map(20,13);
+    const map = new tileMap.Map(20,13);
     map.setContent(unit, {x:5,y:3});
     unit.changePosition({x:2,y:5});
     expect(unit.id).to.eq('test1');
@@ -49,7 +49,7 @@ describe('tile navigation system', function() {
 
   it('a unit should remove itself from map', done => {
     const unit = new Unit('test1');
-    const map = new navigation.Map(20,13);
+    const map = new tileMap.Map(20,13);
     map.setContent(unit, {x:5,y:3});
     unit.removeFromMap();
     expect(unit.id).to.eq('test1');
@@ -60,7 +60,7 @@ describe('tile navigation system', function() {
   it('find near units', done => {
     const unit = new Unit('test1');
     const neighbor = new Unit('neighbor');
-    const map = new navigation.Map(20,13);
+    const map = new tileMap.Map(20,13);
     map.setContent(unit, {x:0,y:0});
     map.setContent(neighbor, {x:1,y:0});
     const neighbors = unit.findNearUnits(1);
@@ -72,7 +72,7 @@ describe('tile navigation system', function() {
     const unit = new Unit('test1');
     const neighbor1 = new Unit('neighbor1');
     const neighbor2 = new Unit('neighbor2');
-    const map = new navigation.Map(20,13);
+    const map = new tileMap.Map(20,13);
     map.setContent(unit, {x:3,y:3});
     map.setContent(neighbor1, {x:1,y:0});
     map.setContent(neighbor2, {x:2,y:2});
@@ -85,7 +85,7 @@ describe('tile navigation system', function() {
     const unit = new Unit('test1');
     const neighbor1 = new Unit('neighbor1');
     const neighbor2 = new Unit('neighbor2');
-    const map = new navigation.Map(20,13);
+    const map = new tileMap.Map(20,13);
     map.setContent(unit, {x:3,y:3});
     map.setContent(neighbor1, {x:1,y:0});
     map.setContent(neighbor2, {x:2,y:2});

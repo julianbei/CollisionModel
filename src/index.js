@@ -1,6 +1,6 @@
 const units = require('./unitSimulation/index');
 const consoleUI = require('./consoleUI/index');
-const navigation = require('./navigation');
+const tileMap = require('./tileMap');
 
 function run(gameState, final){
   const screen = consoleUI.getScreen();
@@ -20,5 +20,5 @@ function run(gameState, final){
 module.exports = {
   units,
   run,
-  navigation
+  tileMap
 };
