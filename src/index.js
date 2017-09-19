@@ -1,4 +1,3 @@
-const simulate = require('./simulations/index');
 const units = require('./unitSimulation/index');
 const consoleUI = require('./consoleUI/index');
 const navigation = require('./navigation');
@@ -19,7 +18,6 @@ function run(gameState, final){
 }
 
 module.exports = {
-  simulate,
   units,
   run,
   navigation
