@@ -32,4 +32,30 @@ describe('movement logic', function() {
     expect(distances[1].unit).to.eql(neighbor1);
     done();
   });
+  it('should move x then y in a short distance', done => {
+    const unit = new Unit('test1');
+    const map = new tileMap.Map(20,13);
+    map.setContent(unit, {x:3,y:3});
+    unit.moveToCoords({x:4, y:4});
+    unit.move();
+    expect(unit.getPosition().getCoordinates()).to.eql({x:4, y:3});
+    unit.move();
+    expect(unit.getPosition().getCoordinates()).to.eql({x:4, y:4});
+    done();
+  });
+  it('should move x then y in a long distance', done => {
+    const unit = new Unit('test1');
+    const map = new tileMap.Map(20,13);
+    map.setContent(unit, {x:4,y:4});
+    unit.moveToCoords({x:2, y:2});
+    unit.move();
+    expect(unit.getPosition().getCoordinates()).to.eql({x:3, y:4});
+    unit.move();
+    expect(unit.getPosition().getCoordinates()).to.eql({x:2, y:4});
+    unit.move();
+    expect(unit.getPosition().getCoordinates()).to.eql({x:2, y:3});
+    unit.move();
+    expect(unit.getPosition().getCoordinates()).to.eql({x:2, y:2});
+    done();
+  });
 });

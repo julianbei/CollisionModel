@@ -31,6 +31,24 @@ class Unit {
       .map((unit) => ({distance: this.distanceTo(unit),unit}))
       .sort((a,b)=> (a.distance > b.distance));
   }
+  moveToCoords(cords){
+    this.movementTarget = cords;
+  }
+  move(){
+    for (let i = 0; i < this.speed; i++) {
+      const position = this.position.getCoordinates();
+      if(position.x === this.movementTarget.x && position.y === this.movementTarget.y) continue;
+      const distanceX = this.position.coordinates.x - this.movementTarget.x;
+      const distanceY = this.position.coordinates.y - this.movementTarget.y;
+      if (distanceX != 0) {
+        this.changePosition({x:position.x - (distanceX > 0?1:-1), y:position.y});
+      }else if (distanceY != 0){
+        this.changePosition({x:position.x, y:position.y - (distanceY > 0?1:-1)});
+      }else {
+        continue;
+      }
+    }
+  }
 }
 
 module.exports = Unit;
