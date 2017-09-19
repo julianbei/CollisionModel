@@ -1,7 +1,7 @@
 const Unit = require('./../Unit');
 
 class Ship extends Unit {
-  constructor(health, hullSize, armor, shield, bullet, laser) {
+  constructor(health, hullSize, armor, shield, bulletPower, laserPower) {
     super();
     this.hullSize = hullSize;
 
@@ -13,8 +13,8 @@ class Ship extends Unit {
 
     this.armor = armor;
 
-    this.laser = laser;
-    this.bullet = bullet;
+    this.laserPower = laserPower;
+    this.bulletPower = bulletPower;
   }
   getStateReport(){
     return {
@@ -31,11 +31,11 @@ class Ship extends Unit {
         string: `${this.shield}/${this.maxShield} (${Math.round(this.shield/this.maxShield*100, 2)}%)`
       },
       armor: this.armor,
-      bullet: this.bullet,
-      laser: this.laser
+      bullet: this.bulletPower,
+      laser: this.laserPower
     };
   }
-  bulletHit(power){
+  receiveBulletHit(power){
     // bullet gun fire power gets reduced by shields and armor
     // shields receive damage
     // armor absorbs damage -> Just to be clear, this is not physically correct
@@ -56,7 +56,7 @@ class Ship extends Unit {
     // the final damage will reduce the health
     this.health = Math.max(this.health - damage, 0);
   }
-  laserHit(power){
+  receiveLaserHit(power){
     // 15% of laser gun fire power ignores the shield
     let shieldPenetration = power * 0.15;
     // 85% of laser gun fire power hits the shield
@@ -70,17 +70,17 @@ class Ship extends Unit {
     let damage = (shieldPenetration + rest);
     this.health = Math.max(this.health - damage, 0);
   }
-  fireBullet(ship){
-    ship.bulletHit(this.bullet);
+  fireBulletOn(ship){
+    ship.receiveBulletHit(this.bulletPower);
   }
-  fireLaser(ship){
-    ship.laserHit(this.laser);
+  fireLaserOn(ship){
+    ship.receiveLaserHit(this.laserPower);
   }
-  fire(ship){
-    this.fireLaser(ship);
-    this.fireBullet(ship);
+  fireOn(ship){
+    this.fireLaserOn(ship);
+    this.fireBulletOn(ship);
   }
-  alive(){
+  isAlive(){
     return (this.health > 0);
   }
 }

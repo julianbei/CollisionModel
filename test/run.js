@@ -16,8 +16,8 @@ describe('screen game run.js', function() {
     };
 
     function finish(result){
-      expect(result.combat.ship1.alive()).to.be.false;
-      expect(result.combat.ship2.alive()).to.be.false;
+      expect(result.combat.ship1.isAlive()).to.be.false;
+      expect(result.combat.ship2.isAlive()).to.be.false;
       done();
     }
 

@@ -21,15 +21,15 @@ describe('clockEngine', function() {
     function combatSimulation(state){
       state.frames++;
       combat.combatFrame(state.combat);
-      if(!state.combat.ship1.alive() || !state.combat.ship2.alive()) {
+      if(!state.combat.ship1.isAlive() || !state.combat.ship2.isAlive()) {
         state.final = true;
       }
       return state;
     }
 
     function finish(result){
-      expect(result.combat.ship1.alive()).to.be.false;
-      expect(result.combat.ship2.alive()).to.be.false;
+      expect(result.combat.ship1.isAlive()).to.be.false;
+      expect(result.combat.ship2.isAlive()).to.be.false;
       expect(result.frames).to.eql(60);
       done();
     }

@@ -13,10 +13,10 @@ describe('combat and units', function() {
       while(!winner){
         counter++;
         combat.combatFrame({ship1, ship2});
-        if(!ship1.alive() || !ship2.alive()) winner = true;
+        if(!ship1.isAlive() || !ship2.isAlive()) winner = true;
       }
-      expect(ship1.alive()).to.be.false;
-      expect(ship2.alive()).to.be.false;
+      expect(ship1.isAlive()).to.be.false;
+      expect(ship2.isAlive()).to.be.false;
       expect(counter).to.eql(6);
       done();
     });
@@ -28,10 +28,10 @@ describe('combat and units', function() {
       while(!winner){
         counter++;
         combat.combatFrame({ship1, ship2});
-        if(!ship1.alive() || !ship2.alive()) winner = true;
+        if(!ship1.isAlive() || !ship2.isAlive()) winner = true;
       }
-      expect(ship1.alive()).to.be.false;
-      expect(ship2.alive()).to.be.false;
+      expect(ship1.isAlive()).to.be.false;
+      expect(ship2.isAlive()).to.be.false;
       expect(counter).to.eql(10);
       done();
     });
@@ -43,10 +43,10 @@ describe('combat and units', function() {
       while(!winner){
         counter++;
         combat.combatFrame({ship1, ship2});
-        if(!ship1.alive() || !ship2.alive()) winner = true;
+        if(!ship1.isAlive() || !ship2.isAlive()) winner = true;
       }
-      expect(ship1.alive()).to.be.true;
-      expect(ship2.alive()).to.be.false;
+      expect(ship1.isAlive()).to.be.true;
+      expect(ship2.isAlive()).to.be.false;
       expect(counter).to.eql(4);
       done();
     });
@@ -59,10 +59,10 @@ describe('combat and units', function() {
       while(!winner){
         counter++;
         combat.combatFrame({ship1, ship2});
-        if(!ship1.alive() || !ship2.alive()) winner = true;
+        if(!ship1.isAlive() || !ship2.isAlive()) winner = true;
       }
-      expect(ship1.alive()).to.be.false;
-      expect(ship2.alive()).to.be.false;
+      expect(ship1.isAlive()).to.be.false;
+      expect(ship2.isAlive()).to.be.false;
       expect(counter).to.eql(30);
       done();
     });
@@ -75,10 +75,10 @@ describe('combat and units', function() {
       while(!winner){
         counter++;
         combat.combatFrame({ship1, ship2});
-        if(!ship1.alive() || !ship2.alive()) winner = true;
+        if(!ship1.isAlive() || !ship2.isAlive()) winner = true;
       }
-      expect(ship1.alive()).to.be.true;
-      expect(ship2.alive()).to.be.false;
+      expect(ship1.isAlive()).to.be.true;
+      expect(ship2.isAlive()).to.be.false;
       expect(counter).to.eql(4);
       done();
     });
@@ -91,10 +91,10 @@ describe('combat and units', function() {
       while(!winner){
         counter++;
         combat.combatFrame({ship1, ship2});
-        if(!ship1.alive() || !ship2.alive()) winner = true;
+        if(!ship1.isAlive() || !ship2.isAlive()) winner = true;
       }
-      expect(ship1.alive()).to.be.true;
-      expect(ship2.alive()).to.be.false;
+      expect(ship1.isAlive()).to.be.true;
+      expect(ship2.isAlive()).to.be.false;
       expect(counter).to.eql(2);
       done();
     });
@@ -107,10 +107,10 @@ describe('combat and units', function() {
       while(!winner){
         counter++;
         combat.combatFrame({ship1, ship2});
-        if(!ship1.alive() || !ship2.alive()) winner = true;
+        if(!ship1.isAlive() || !ship2.isAlive()) winner = true;
       }
-      expect(ship1.alive()).to.be.false;
-      expect(ship2.alive()).to.be.false;
+      expect(ship1.isAlive()).to.be.false;
+      expect(ship2.isAlive()).to.be.false;
       expect(counter).to.eql(60);
       done();
     });
@@ -123,10 +123,10 @@ describe('combat and units', function() {
       while(!winner){
         counter++;
         combat.combatFrame({ship1, ship2});
-        if(!ship1.alive() || !ship2.alive()) winner = true;
+        if(!ship1.isAlive() || !ship2.isAlive()) winner = true;
       }
-      expect(ship1.alive()).to.be.true;
-      expect(ship2.alive()).to.be.false;
+      expect(ship1.isAlive()).to.be.true;
+      expect(ship2.isAlive()).to.be.false;
       expect(counter).to.eql(24);
       done();
     });
@@ -139,10 +139,10 @@ describe('combat and units', function() {
       while(!winner){
         counter++;
         combat.combatFrame({ship1, ship2});
-        if(!ship1.alive() || !ship2.alive()) winner = true;
+        if(!ship1.isAlive() || !ship2.isAlive()) winner = true;
       }
-      expect(ship1.alive()).to.be.true;
-      expect(ship2.alive()).to.be.false;
+      expect(ship1.isAlive()).to.be.true;
+      expect(ship2.isAlive()).to.be.false;
       expect(counter).to.eql(3);
       done();
     });
@@ -155,10 +155,10 @@ describe('combat and units', function() {
       while(!winner){
         counter++;
         combat.combatFrame({ship1, ship2});
-        if(!ship1.alive() || !ship2.alive()) winner = true;
+        if(!ship1.isAlive() || !ship2.isAlive()) winner = true;
       }
-      expect(ship1.alive()).to.be.true;
-      expect(ship2.alive()).to.be.false;
+      expect(ship1.isAlive()).to.be.true;
+      expect(ship2.isAlive()).to.be.false;
       expect(counter).to.eql(1);
       done();
     });
