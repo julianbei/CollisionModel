@@ -1,4 +1,3 @@
-const clockEngine = require('./clockEngine');
 const Unit = require('./Unit');
 // ships
 const Fighter = require('./classes/Fighter');
@@ -8,7 +7,6 @@ const Dreadnaught = require('./classes/Dreadnaught');
 
 module.exports = {
   Unit,
-  clockEngine,
   classes: {
     Fighter,
     Corvette,
