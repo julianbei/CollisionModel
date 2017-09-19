@@ -1,4 +1,4 @@
-const units = require('./unitSimulation/index');
+const units = require('./units');
 const consoleUI = require('./consoleUI/index');
 const tileMap = require('./tileMap');
 const combat = require('./combat');
