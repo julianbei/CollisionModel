@@ -1,5 +1,5 @@
 const expect = require('chai').expect;
-const navigation = require('./../src/index');
+const navigation = require('./../src/index').navigation;
 
 describe('tile navigation system', function() {
   it('should create a 2D tile map', done => {
