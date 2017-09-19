@@ -5,7 +5,7 @@ function run(gameState, final){
 
   function combatSimulation(state){
     game.combat.combatFrame(state.combat);
-    if(!state.combat.ship1.alive() || !state.combat.ship2.alive()) {
+    if(!state.combat.ship1.isAlive() || !state.combat.ship2.isAlive()) {
       state.final = true;
     }
     screen.updateScreen(state);
