@@ -4,6 +4,11 @@ class Tile {
     this.coordinates = {x,y};
     this.system = system;
   }
+  getCoordinates(){
+    const x = this.coordinates.x;
+    const y = this.coordinates.y;
+    return {x,y};
+  }
   getContent(){
     return this.content;
   }
@@ -19,6 +24,12 @@ class Tile {
   }
   findNearUnits(range){
     return this.system.findNearUnits(this.coordinates, range);
+  }
+  distanceTo(tile){
+    const cords = tile.getCoordinates();
+    const distanceX = Math.abs(this.coordinates.x - cords.x);
+    const distanceY = Math.abs(this.coordinates.y - cords.y);
+    return distanceX+distanceY;
   }
 }
 
