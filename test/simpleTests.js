@@ -1,5 +1,6 @@
 const expect = require('chai').expect;
 const units = require('./../src/index').units;
+const combat = require('./../src/index').combat;
 
 describe('simulations', function() {
   describe('unit simple', function() {
@@ -12,7 +13,7 @@ describe('simulations', function() {
         let counter = 0;
         while(!winner){
           counter++;
-          units.combatFrame({ship1, ship2});
+          combat.combatFrame({ship1, ship2});
           if(!ship1.alive() || !ship2.alive()) winner = true;
         }
         expect(ship1.alive()).to.be.false;
@@ -27,7 +28,7 @@ describe('simulations', function() {
         let counter = 0;
         while(!winner){
           counter++;
-          units.combatFrame({ship1, ship2});
+          combat.combatFrame({ship1, ship2});
           if(!ship1.alive() || !ship2.alive()) winner = true;
         }
         expect(ship1.alive()).to.be.false;
@@ -42,7 +43,7 @@ describe('simulations', function() {
         let counter = 0;
         while(!winner){
           counter++;
-          units.combatFrame({ship1, ship2});
+          combat.combatFrame({ship1, ship2});
           if(!ship1.alive() || !ship2.alive()) winner = true;
         }
         expect(ship1.alive()).to.be.true;
@@ -58,7 +59,7 @@ describe('simulations', function() {
         let counter = 0;
         while(!winner){
           counter++;
-          units.combatFrame({ship1, ship2});
+          combat.combatFrame({ship1, ship2});
           if(!ship1.alive() || !ship2.alive()) winner = true;
         }
         expect(ship1.alive()).to.be.false;
@@ -74,7 +75,7 @@ describe('simulations', function() {
         let counter = 0;
         while(!winner){
           counter++;
-          units.combatFrame({ship1, ship2});
+          combat.combatFrame({ship1, ship2});
           if(!ship1.alive() || !ship2.alive()) winner = true;
         }
         expect(ship1.alive()).to.be.true;
@@ -90,7 +91,7 @@ describe('simulations', function() {
         let counter = 0;
         while(!winner){
           counter++;
-          units.combatFrame({ship1, ship2});
+          combat.combatFrame({ship1, ship2});
           if(!ship1.alive() || !ship2.alive()) winner = true;
         }
         expect(ship1.alive()).to.be.true;
@@ -106,7 +107,7 @@ describe('simulations', function() {
         let counter = 0;
         while(!winner){
           counter++;
-          units.combatFrame({ship1, ship2});
+          combat.combatFrame({ship1, ship2});
           if(!ship1.alive() || !ship2.alive()) winner = true;
         }
         expect(ship1.alive()).to.be.false;
@@ -122,7 +123,7 @@ describe('simulations', function() {
         let counter = 0;
         while(!winner){
           counter++;
-          units.combatFrame({ship1, ship2});
+          combat.combatFrame({ship1, ship2});
           if(!ship1.alive() || !ship2.alive()) winner = true;
         }
         expect(ship1.alive()).to.be.true;
@@ -138,7 +139,7 @@ describe('simulations', function() {
         let counter = 0;
         while(!winner){
           counter++;
-          units.combatFrame({ship1, ship2});
+          combat.combatFrame({ship1, ship2});
           if(!ship1.alive() || !ship2.alive()) winner = true;
         }
         expect(ship1.alive()).to.be.true;
@@ -154,7 +155,7 @@ describe('simulations', function() {
         let counter = 0;
         while(!winner){
           counter++;
-          units.combatFrame({ship1, ship2});
+          combat.combatFrame({ship1, ship2});
           if(!ship1.alive() || !ship2.alive()) winner = true;
         }
         expect(ship1.alive()).to.be.true;
@@ -183,7 +184,7 @@ describe('simulations', function() {
 
         function combatSimulation(state){
           state.frames++;
-          units.combatFrame(state.combat);
+          combat.combatFrame(state.combat);
           if(!state.combat.ship1.alive() || !state.combat.ship2.alive()) {
             state.final = true;
           }
